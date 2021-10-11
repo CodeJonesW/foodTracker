@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {
-  FlatList,
   SafeAreaView,
   ScrollView,
   Alert,
@@ -21,6 +20,14 @@ const App = () => {
   const [foodInput, setFoodInput] = useState<string>('');
   const [foodCalories, setFoodCalories] = useState<string>('');
   const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
+
+  const totalCalories = () => {
+    let totalCalorieCount = 0;
+    consumedFoods.map(food => {
+      totalCalorieCount = totalCalorieCount + parseInt(food.calories);
+    });
+    return totalCalorieCount;
+  };
   const addConsumption = () => {
     let consumption = {
       name: foodInput,
@@ -28,6 +35,10 @@ const App = () => {
     };
     if (foodInput === '') {
       Alert.alert('Lets put a name of the food in first.');
+      return;
+    }
+    if (foodCalories === '') {
+      Alert.alert('We need your calories bud');
       return;
     }
     setConsumptions([...consumedFoods, consumption]);
@@ -79,6 +90,9 @@ const App = () => {
           })}
         </View>
       </ScrollView>
+      <Text style={styles.totalCalorieCount}>
+        Total Calories: {totalCalories()}
+      </Text>
     </SafeAreaView>
   );
 };
@@ -92,6 +106,10 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 35,
     margin: 50,
+  },
+  totalCalorieCount: {
+    width: 300,
+    textAlign: 'center',
   },
 });
 
