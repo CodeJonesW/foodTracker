@@ -14,12 +14,12 @@ import Food from './components/Food';
 
 export interface Consumption {
   name: string;
-  calories: number;
+  calories: string;
 }
 
 const App = () => {
   const [foodInput, setFoodInput] = useState<string>('');
-  const [foodCalories, setFoodCalories] = useState<number>(0);
+  const [foodCalories, setFoodCalories] = useState<string>('');
   const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
 
   const addConsumption = () => {
@@ -28,6 +28,8 @@ const App = () => {
       calories: foodCalories,
     };
     setConsumptions([...consumedFoods, consumption]);
+    setFoodInput('');
+    setFoodCalories('');
   };
 
   useEffect(() => {
@@ -44,6 +46,7 @@ const App = () => {
             foodInput={foodInput}
             setFoodInput={setFoodInput}
             setFoodCalories={setFoodCalories}
+            foodCalories={foodCalories}
             addConsumption={addConsumption}
           />
         </View>
