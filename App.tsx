@@ -21,7 +21,6 @@ const App = () => {
   const [foodInput, setFoodInput] = useState<string>('');
   const [foodCalories, setFoodCalories] = useState<string>('');
   const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
-
   const addConsumption = () => {
     let consumption = {
       name: foodInput,
@@ -34,6 +33,11 @@ const App = () => {
     setConsumptions([...consumedFoods, consumption]);
     setFoodInput('');
     setFoodCalories('');
+  };
+
+  const deleteConsumption = (nameToDelete: string) => {
+    let newFoodArray = consumedFoods.filter(food => food.name !== nameToDelete);
+    setConsumptions(newFoodArray);
   };
 
   useEffect(() => {
@@ -54,15 +58,23 @@ const App = () => {
           />
         </View>
 
-        <View style={{display: 'flex', flexDirection: 'column', padding: '2%'}}>
+        <View style={{display: 'flex', flexDirection: 'column'}}>
           <View
-            style={{display: 'flex', flexDirection: 'row', marginBottom: '5%'}}>
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              margin: 20,
+            }}>
             <Text>Name</Text>
-            <Text style={{marginLeft: '50%'}}>Calories</Text>
+            <Text style={{marginLeft: 170}}>Calories</Text>
           </View>
           {consumedFoods.map((food: Consumption) => {
             return (
-              <Food consumption={{name: food.name, calories: food.calories}} />
+              <Food
+                key={food.name}
+                consumption={{name: food.name, calories: food.calories}}
+                deleteConsumption={deleteConsumption}
+              />
             );
           })}
         </View>
@@ -79,8 +91,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 35,
-    marginBottom: '1%',
-    marginTop: '5%',
+    margin: 50,
   },
 });
 

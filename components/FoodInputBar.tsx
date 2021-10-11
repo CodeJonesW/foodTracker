@@ -32,6 +32,7 @@ const FoodInputBar: React.FC<{
         <TextInput
           style={{height: 40, width: 150}}
           placeholder="Enter what you ate!"
+          keyboardType="ascii-capable"
           onChangeText={text => setFoodInput(text)}
           value={foodInput}
         />
@@ -56,10 +57,16 @@ const FoodInputBar: React.FC<{
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: '15%',
-    marginLeft: '10%',
+    width: 100,
+    height: 100,
+    marginLeft: 80,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
     border: 'solid',
     borderColor: 'black',
+    backgroundColor: 'green',
   },
 });
 
