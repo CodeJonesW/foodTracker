@@ -2,12 +2,12 @@ import React from 'react';
 import {Text, View} from 'react-native';
 
 const Food: React.FC<{
-  consumption: {name: string; calories: number};
+  consumption: {name: string; calories: string};
 }> = ({children, consumption}) => {
   return (
-    <View style={{padding: 10}}>
+    <View style={{display: 'flex', flexDirection: 'row'}}>
       <Text>{consumption.name}</Text>
-      <Text>{consumption.calories}</Text>
+      <Text style={{marginLeft: '55%'}}>{consumption.calories}</Text>
     </View>
   );
 };

@@ -1,5 +1,11 @@
 import React from 'react';
-import {TextInput, View, Button} from 'react-native';
+import {
+  TextInput,
+  Text,
+  View,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 
 const FoodInputBar: React.FC<{
   foodInput: string;
@@ -20,33 +26,41 @@ const FoodInputBar: React.FC<{
       style={{
         padding: 10,
         display: 'flex',
-        flexDirection: 'column',
+        flexDirection: 'row',
       }}>
       <View style={{padding: 10, display: 'flex', flexDirection: 'column'}}>
         <TextInput
-          style={{height: 40}}
+          style={{height: 40, width: 150}}
           placeholder="Enter what you ate!"
           onChangeText={text => setFoodInput(text)}
           value={foodInput}
         />
         <TextInput
-          style={{height: 40}}
+          style={{height: 40, width: 150}}
           placeholder="Calories?"
           keyboardType="number-pad"
           onChangeText={text => setFoodCalories(text)}
           value={foodCalories}
         />
       </View>
-      <View>
-        <Button
-          onPress={() => addConsumption(foodInput)}
-          title="Add"
-          color="blue"
-          accessibilityLabel="Learn more about this purple button"
-        />
-      </View>
+
+      <TouchableOpacity
+        onPress={() => addConsumption(foodInput)}
+        style={styles.button}
+        accessibilityLabel="Record a food">
+        <Text>Submit</Text>
+      </TouchableOpacity>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {
+    marginTop: '15%',
+    marginLeft: '10%',
+    border: 'solid',
+    borderColor: 'black',
+  },
+});
 
 export default FoodInputBar;

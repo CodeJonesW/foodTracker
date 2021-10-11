@@ -3,7 +3,7 @@ import {
   FlatList,
   SafeAreaView,
   ScrollView,
-  StatusBar,
+  Alert,
   StyleSheet,
   Text,
   View,
@@ -27,6 +27,10 @@ const App = () => {
       name: foodInput,
       calories: foodCalories,
     };
+    if (foodInput === '') {
+      Alert.alert('Lets put a name of the food in first.');
+      return;
+    }
     setConsumptions([...consumedFoods, consumption]);
     setFoodInput('');
     setFoodCalories('');
@@ -38,7 +42,6 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Text style={styles.header}>What did you eat?</Text>
         <View>
@@ -51,9 +54,18 @@ const App = () => {
           />
         </View>
 
-        {consumedFoods.map((food: Consumption) => {
-          return <Food consumption={food} />;
-        })}
+        <View style={{display: 'flex', flexDirection: 'column', padding: '2%'}}>
+          <View
+            style={{display: 'flex', flexDirection: 'row', marginBottom: '5%'}}>
+            <Text>Name</Text>
+            <Text style={{marginLeft: '50%'}}>Calories</Text>
+          </View>
+          {consumedFoods.map((food: Consumption) => {
+            return (
+              <Food consumption={{name: food.name, calories: food.calories}} />
+            );
+          })}
+        </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -67,6 +79,8 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 35,
+    marginBottom: '1%',
+    marginTop: '5%',
   },
 });
 
