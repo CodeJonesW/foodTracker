@@ -14,7 +14,7 @@ export interface Consumption {
   name: string;
   calories: string;
 }
-const WhatDidYouEat: React.FC = ({navigation}) => {
+const WhatDidYouEat: React.FC = ({children}) => {
   const [foodInput, setFoodInput] = useState<string>('');
   const [foodCalories, setFoodCalories] = useState<string>('');
   const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
@@ -91,10 +91,6 @@ const WhatDidYouEat: React.FC = ({navigation}) => {
       <Text style={styles.totalCalorieCount}>
         Total Calories: {totalCalories()}
       </Text>
-      <Button
-        title="Go to your Profile"
-        onPress={() => navigation.navigate('Profile')}
-      />
     </SafeAreaView>
   );
 };
@@ -112,6 +108,7 @@ const styles = StyleSheet.create({
   totalCalorieCount: {
     width: 300,
     textAlign: 'center',
+    marginBottom: 10,
   },
 });
 

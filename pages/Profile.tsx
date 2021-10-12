@@ -7,14 +7,13 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-const Profile: React.FC = ({navigation}) => {
+const Profile: React.FC = ({children}) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
         <Text>Hello user</Text>
         <Text>View your intake</Text>
         <TouchableOpacity
-          onPress={() => navigation.navigate('WhatDidYouEat')}
           style={styles.button}
           accessibilityLabel="Record a Profile">
           <Text style={styles.cake}>🍰</Text>

@@ -3,23 +3,31 @@ import WhatDidYouEat from './pages/WhatDidYouEat';
 import Profile from './pages/Profile';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Text} from 'react-native';
+
+const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="WhatDidYouEat"
+      <Tab.Navigator>
+        <Tab.Screen
+          name="Tough Love Calories"
           component={WhatDidYouEat}
-          options={{title: 'Tough Love Calories'}}
+          options={{
+            tabBarIcon: ({color, size}) => <Text>🖲</Text>,
+          }}
         />
-        <Stack.Screen
-          name="Profile"
+        <Tab.Screen
+          name="Tough Love Profile"
           component={Profile}
-          options={{title: 'Profile'}}
+          options={{
+            tabBarIcon: ({color, size}) => <Text>🍰</Text>,
+          }}
         />
-      </Stack.Navigator>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
