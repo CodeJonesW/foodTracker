@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
 } from 'react-native';
 import FoodInputBar from '../components/FoodInputBar';
 import Food from '../components/Food';
@@ -13,7 +14,7 @@ export interface Consumption {
   name: string;
   calories: string;
 }
-const WhatDidYouEat: React.FC = ({children}) => {
+const WhatDidYouEat: React.FC = ({navigation}) => {
   const [foodInput, setFoodInput] = useState<string>('');
   const [foodCalories, setFoodCalories] = useState<string>('');
   const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
@@ -90,6 +91,10 @@ const WhatDidYouEat: React.FC = ({children}) => {
       <Text style={styles.totalCalorieCount}>
         Total Calories: {totalCalories()}
       </Text>
+      <Button
+        title="Go to your Profile"
+        onPress={() => navigation.navigate('Profile')}
+      />
     </SafeAreaView>
   );
 };
