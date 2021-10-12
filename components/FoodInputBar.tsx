@@ -49,7 +49,7 @@ const FoodInputBar: React.FC<{
         onPress={() => addConsumption(foodInput)}
         style={styles.button}
         accessibilityLabel="Record a food">
-        <Text>Submit</Text>
+        <Text>Munch</Text>
       </TouchableOpacity>
     </View>
   );
