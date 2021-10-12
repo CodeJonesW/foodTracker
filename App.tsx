@@ -17,7 +17,7 @@ const App = () => {
           name="Tough Love Calories"
           component={WhatDidYouEat}
           options={{
-            tabBarIcon: ({color, size}) => <Text>🖲</Text>,
+            tabBarIcon: ({color, size}) => <Text>🥑</Text>,
           }}
         />
         <Tab.Screen
