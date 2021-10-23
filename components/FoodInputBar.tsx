@@ -30,15 +30,17 @@ const FoodInputBar: React.FC<{
       }}>
       <View style={{padding: 10, display: 'flex', flexDirection: 'column'}}>
         <TextInput
-          style={{height: 40, width: 150}}
-          placeholder="Enter what you ate!"
+          style={styles.textInput}
+          placeholder="Enter what you ate! 👈"
+          placeholderTextColor="black"
           keyboardType="ascii-capable"
           onChangeText={text => setFoodInput(text)}
           value={foodInput}
         />
         <TextInput
-          style={{height: 40, width: 150}}
-          placeholder="Calories?"
+          style={styles.textInput}
+          placeholder="Calories? 👈"
+          placeholderTextColor="black"
           keyboardType="number-pad"
           onChangeText={text => setFoodCalories(text)}
           value={foodCalories}
@@ -59,7 +61,7 @@ const styles = StyleSheet.create({
   button: {
     width: 100,
     height: 100,
-    marginLeft: 80,
+    marginLeft: 20,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
@@ -67,6 +69,16 @@ const styles = StyleSheet.create({
     border: 'solid',
     borderColor: 'black',
     backgroundColor: 'green',
+  },
+  textInput: {
+    height: 40,
+    width: 200,
+    borderColor: 'grey',
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderRadius: 10,
+    marginBottom: 10,
+    padding: 5,
   },
 });
 

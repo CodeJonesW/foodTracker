@@ -145,7 +145,6 @@
 				6C97AB639B58BBB4B15BBE30 /* Pods-foodTrack-foodTrackTests.debug.xcconfig */,
 				1D0AE47A65C8663E3B452821 /* Pods-foodTrack-foodTrackTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -432,6 +431,7 @@
 			baseConfigurationReference = 6C97AB639B58BBB4B15BBE30 /* Pods-foodTrack-foodTrackTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "William Jones";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -450,6 +450,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b270055a-8d65-4784-b27b-b9a4bdaedbca";
+				PROVISIONING_PROFILE_SPECIFIER = toughlovecalories2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/foodTrack.app/foodTrack";
 			};
 			name = Debug;
@@ -460,6 +462,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "William Jones";
 				INFOPLIST_FILE = foodTrackTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -474,6 +477,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b270055a-8d65-4784-b27b-b9a4bdaedbca";
+				PROVISIONING_PROFILE_SPECIFIER = toughlovecalories2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/foodTrack.app/foodTrack";
 			};
 			name = Release;
@@ -484,7 +489,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = 67CHPA659F;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = foodTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -496,8 +504,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = toughlovecalories;
 				PRODUCT_NAME = foodTrack;
+				PROVISIONING_PROFILE = "b270055a-8d65-4784-b27b-b9a4bdaedbca";
+				PROVISIONING_PROFILE_SPECIFIER = toughlovecalories2;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -510,7 +520,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = 67CHPA659F;
 				INFOPLIST_FILE = foodTrack/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -521,8 +533,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = toughlovecalories;
 				PRODUCT_NAME = foodTrack;
+				PROVISIONING_PROFILE = "b270055a-8d65-4784-b27b-b9a4bdaedbca";
+				PROVISIONING_PROFILE_SPECIFIER = toughlovecalories2;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

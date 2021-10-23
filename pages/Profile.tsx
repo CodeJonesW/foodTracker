@@ -11,8 +11,6 @@ const Profile: React.FC = ({children}) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text>Hello user</Text>
-        <Text>View your intake</Text>
         <TouchableOpacity
           style={styles.button}
           accessibilityLabel="Record a Profile">
