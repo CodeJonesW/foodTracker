@@ -20,7 +20,7 @@ or alternatively using `brew install fastlane`
 ```
 fastlane ios beta
 ```
-Description of what the lane does
+upload new build and new version to test flight
 
 ----
 
