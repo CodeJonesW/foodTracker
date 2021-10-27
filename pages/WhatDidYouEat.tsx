@@ -14,14 +14,23 @@ export interface Consumption {
   name: string;
   calories: string;
 }
+export interface WhatDidYouEatState {
+  foodInput?: string;
+  foodCalories?: string;
+  consumedFoods?: Consumption[];
+}
 const WhatDidYouEat: React.FC = ({children}) => {
   const [foodInput, setFoodInput] = useState<string>('');
   const [foodCalories, setFoodCalories] = useState<string>('');
   const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
 
+  const [state, setState] = useState<WhatDidYouEatState>();
+
+  // const {foodInput, foodCalories, consumedFoods} = state;
+
   const totalCalories = () => {
     let totalCalorieCount = 0;
-    consumedFoods.map(food => {
+    consumedFoods.map((food: Consumption) => {
       totalCalorieCount = totalCalorieCount + parseInt(food.calories);
     });
     return totalCalorieCount;
@@ -39,19 +48,25 @@ const WhatDidYouEat: React.FC = ({children}) => {
       Alert.alert('We need your calories bud');
       return;
     }
+    setState({
+      foodInput: '',
+      foodCalories: '',
+      consumedFoods: [...consumedFoods, consumption],
+    });
     setConsumptions([...consumedFoods, consumption]);
-    setFoodInput('');
     setFoodCalories('');
+    setFoodInput('');
   };
 
   const deleteConsumption = (nameToDelete: string) => {
     let newFoodArray = consumedFoods.filter(food => food.name !== nameToDelete);
     setConsumptions(newFoodArray);
+    setState({...state, consumedFoods: newFoodArray});
   };
 
   useEffect(() => {
-    console.log(consumedFoods);
-  }, [consumedFoods]);
+    console.log(state);
+  }, [state]);
 
   return (
     <SafeAreaView style={styles.container}>
