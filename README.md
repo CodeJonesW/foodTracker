@@ -2,9 +2,9 @@
 I am hungry all the time so I better keep track 🥑 🍰 🥧
 
 
-Technologies I am using 
+#Technologies I am using 
 
-Fastlane 🙏
-React Native
-RN Navigation
-React Native-Picker
+##Fastlane 🙏
+##React Native
+##RN Navigation
+##React Native-Picker
