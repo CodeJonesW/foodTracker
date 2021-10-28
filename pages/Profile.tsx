@@ -17,20 +17,24 @@ const Profile = ({route, navigation}: ProfileProps) => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.button}
-          accessibilityLabel="Record a Profile">
-          <Text style={styles.cake}>🍰</Text>
-        </TouchableOpacity>
         <View>
           <Text>Date: {date}</Text>
-          <Text>{dailyConsumptionData.totalCalories}</Text>
+          <Text>
+            Daily Total Calories: {dailyConsumptionData.totalCalories}
+          </Text>
           {dailyConsumptionData.consumptions.map((consumption: Consumption) => {
-            <View>
-              <Text>{consumption.name}</Text>
-              <Text>{consumption.calories}</Text>
-            </View>;
+            return (
+              <View>
+                <Text>Consumption: {consumption.name}</Text>
+                <Text>Calories: {consumption.calories}</Text>
+              </View>
+            );
           })}
+          <TouchableOpacity
+            style={styles.button}
+            accessibilityLabel="Record a Profile">
+            <Text style={styles.cake}>🍰</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
@@ -49,6 +53,7 @@ const styles = StyleSheet.create({
     border: 'solid',
     borderColor: 'black',
     backgroundColor: 'blue',
+    marginTop: 250,
   },
   cake: {
     fontSize: 100,
