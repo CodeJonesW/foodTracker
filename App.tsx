@@ -4,11 +4,13 @@ import Profile from './pages/Profile';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 import {Text} from 'react-native';
 import ErrorBoundary from './components/ErrorBoundary';
+import {RootStackParamList} from './Types/routeTypes';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
@@ -16,15 +18,16 @@ const App = () => {
       <ErrorBoundary>
         <Tab.Navigator>
           <Tab.Screen
-            name="Tough Love Calories"
+            name="Home"
             component={WhatDidYouEat}
             options={{
               tabBarIcon: ({color, size}) => <Text>🥑</Text>,
             }}
           />
           <Tab.Screen
-            name="Tough Love Profile"
+            name="Profile"
             component={Profile}
+            initialParams={{userId: '123'}}
             options={{
               tabBarIcon: ({color, size}) => <Text>🍰</Text>,
             }}

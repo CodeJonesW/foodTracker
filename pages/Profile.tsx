@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Text,
   View,
@@ -6,8 +6,14 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
+import {ProfileProps} from '../Types/routeTypes';
+import {Consumption} from './WhatDidYouEat';
 
-const Profile: React.FC = ({children}) => {
+const Profile = ({route, navigation}: ProfileProps) => {
+  const {dailyConsumptionData, userId, date} = route.params;
+  useEffect(() => {
+    console.log(dailyConsumptionData);
+  }, []);
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -16,6 +22,16 @@ const Profile: React.FC = ({children}) => {
           accessibilityLabel="Record a Profile">
           <Text style={styles.cake}>🍰</Text>
         </TouchableOpacity>
+        <View>
+          <Text>Date: {date}</Text>
+          <Text>{dailyConsumptionData.totalCalories}</Text>
+          {dailyConsumptionData.consumptions.map((consumption: Consumption) => {
+            <View>
+              <Text>{consumption.name}</Text>
+              <Text>{consumption.calories}</Text>
+            </View>;
+          })}
+        </View>
       </View>
     </SafeAreaView>
   );

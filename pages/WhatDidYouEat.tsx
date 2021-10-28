@@ -7,9 +7,11 @@ import {
   Text,
   View,
   Button,
+  TouchableOpacity,
 } from 'react-native';
 import FoodInputBar from '../components/FoodInputBar';
 import Food from '../components/Food';
+import {HomeProps} from '../Types/routeTypes';
 export interface Consumption {
   name: string;
   calories: string;
@@ -19,7 +21,7 @@ export interface WhatDidYouEatState {
   foodCalories?: string;
   consumedFoods?: Consumption[];
 }
-const WhatDidYouEat: React.FC = ({children}) => {
+const WhatDidYouEat = ({route, navigation}: HomeProps) => {
   const [foodInput, setFoodInput] = useState<string>('');
   const [foodCalories, setFoodCalories] = useState<string>('');
   const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
@@ -64,6 +66,21 @@ const WhatDidYouEat: React.FC = ({children}) => {
     setState({...state, consumedFoods: newFoodArray});
   };
 
+  const saveDay = () => {
+    console.log('save day');
+    if (!state?.consumedFoods) {
+      return;
+    }
+    navigation.navigate('Profile', {
+      dailyConsumptionData: {
+        consumptions: state.consumedFoods,
+        totalCalories: totalCalories(),
+      },
+      userId: 1,
+      date: Date.now(),
+    });
+  };
+
   useEffect(() => {
     console.log(state);
   }, [state]);
@@ -106,6 +123,12 @@ const WhatDidYouEat: React.FC = ({children}) => {
       <Text style={styles.totalCalorieCount}>
         Total Calories: {totalCalories()}
       </Text>
+      <TouchableOpacity
+        onPress={saveDay}
+        style={styles.button}
+        accessibilityLabel="Record a food">
+        <Text>💾</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
@@ -124,6 +147,18 @@ const styles = StyleSheet.create({
     width: 300,
     textAlign: 'center',
     marginBottom: 10,
+  },
+  button: {
+    width: 40,
+    height: 40,
+    marginLeft: 20,
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    border: 'solid',
+    borderColor: 'black',
+    backgroundColor: 'green',
   },
 });
 
