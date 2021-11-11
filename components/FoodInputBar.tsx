@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
+  Alert,
   TextInput,
   Text,
   View,
@@ -8,19 +9,25 @@ import {
 } from 'react-native';
 
 const FoodInputBar: React.FC<{
-  foodInput: string;
-  foodCalories: string;
-  setFoodInput: Function;
-  setFoodCalories: Function;
   addConsumption: Function;
-}> = ({
-  children,
-  foodInput,
-  setFoodInput,
-  addConsumption,
-  setFoodCalories,
-  foodCalories,
-}) => {
+}> = ({children, addConsumption}) => {
+  const [foodInput, setFoodInput] = useState<string>('');
+  const [foodCalories, setFoodCalories] = useState<string>('');
+
+  const submit = () => {
+    if (foodInput === '') {
+      Alert.alert('Lets put a name of the food in first.');
+      return;
+    }
+    if (foodCalories === '') {
+      Alert.alert('We need your calories bud');
+      return;
+    }
+    addConsumption(foodInput, foodCalories);
+    setFoodCalories('');
+    setFoodInput('');
+  };
+
   return (
     <View
       style={{
@@ -48,7 +55,7 @@ const FoodInputBar: React.FC<{
       </View>
 
       <TouchableOpacity
-        onPress={() => addConsumption(foodInput)}
+        onPress={() => submit()}
         style={styles.button}
         accessibilityLabel="Record a food">
         <Text>Munch</Text>

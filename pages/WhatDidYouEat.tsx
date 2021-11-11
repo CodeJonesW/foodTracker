@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  Alert,
   StyleSheet,
   Text,
   View,
@@ -22,8 +21,6 @@ export interface WhatDidYouEatState {
   consumedFoods?: Consumption[];
 }
 const WhatDidYouEat = ({route, navigation}: HomeProps) => {
-  const [foodInput, setFoodInput] = useState<string>('');
-  const [foodCalories, setFoodCalories] = useState<string>('');
   const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
 
   const [state, setState] = useState<WhatDidYouEatState>();
@@ -37,27 +34,18 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
     });
     return totalCalorieCount;
   };
-  const addConsumption = () => {
+  const addConsumption = (foodInput: string, foodCalories: string) => {
     let consumption = {
       name: foodInput,
       calories: foodCalories,
     };
-    if (foodInput === '') {
-      Alert.alert('Lets put a name of the food in first.');
-      return;
-    }
-    if (foodCalories === '') {
-      Alert.alert('We need your calories bud');
-      return;
-    }
+
     setState({
       foodInput: '',
       foodCalories: '',
       consumedFoods: [...consumedFoods, consumption],
     });
     setConsumptions([...consumedFoods, consumption]);
-    setFoodCalories('');
-    setFoodInput('');
   };
 
   const deleteConsumption = (nameToDelete: string) => {
@@ -90,13 +78,7 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Text style={styles.header}>What did you eat?</Text>
         <View>
-          <FoodInputBar
-            foodInput={foodInput}
-            setFoodInput={setFoodInput}
-            setFoodCalories={setFoodCalories}
-            foodCalories={foodCalories}
-            addConsumption={addConsumption}
-          />
+          <FoodInputBar addConsumption={addConsumption} />
         </View>
 
         <View style={{display: 'flex', flexDirection: 'column'}}>
