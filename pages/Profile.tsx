@@ -10,13 +10,12 @@ import {ProfileProps} from '../Types/routeTypes';
 import {Consumption} from './WhatDidYouEat';
 
 const Profile = ({route, navigation}: ProfileProps) => {
-  const {dailyConsumptionData, userId, date} = route.params;
+  const {dailyConsumptionData, userId} = route.params;
   const [state, setState] = React.useState(() => {
     return {
       status: 'pending',
       error: null,
-      allDaysOfConsumptions: null,
-      // @ts-ignore
+      allDaysOfConsumptions: [],
       newDayOfConsumptions: null,
     };
   });
@@ -28,8 +27,17 @@ const Profile = ({route, navigation}: ProfileProps) => {
     if (!dailyConsumptionData) {
       return;
     }
-    // @ts-ignore
-    setState({newDayOfConsumptions: dailyConsumptionData, status: 'loaded'});
+    let updatedAllDaysOfConsumptions = [
+      state.allDaysOfConsumptions,
+      dailyConsumptionData,
+    ];
+    setState({
+      // @ts-ignore
+      newDayOfConsumptions: dailyConsumptionData,
+      // @ts-ignore
+      allDaysOfConsumptions: updatedAllDaysOfConsumptions,
+      status: 'loaded',
+    });
 
     return () => {
       console.log('clean up!, i run when the component is unmounted');
@@ -49,10 +57,10 @@ const Profile = ({route, navigation}: ProfileProps) => {
   } else {
     return (
       <SafeAreaView>
-        {newDayOfConsumptions || allDaysOfConsumptions !== null ? (
+        {status === 'loaded' ? (
           <View style={styles.container}>
             <View>
-              <Text>Date: {date}</Text>
+              <Text>Date: {dailyConsumptionData.date}</Text>
               <Text>
                 Daily Total Calories: {dailyConsumptionData.totalCalories}
               </Text>

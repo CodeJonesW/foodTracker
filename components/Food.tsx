@@ -16,7 +16,7 @@ const Food: React.FC<{
       <TouchableOpacity
         onPress={() => deleteConsumption(consumption.name)}
         style={styles.button}
-        accessibilityLabel="Record a food">
+        accessibilityLabel="Delete a food consumption">
         <Text>❌</Text>
       </TouchableOpacity>
     </View>

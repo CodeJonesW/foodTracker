@@ -60,10 +60,11 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
       dailyConsumptionData: {
         consumptions: state.consumedFoods,
         totalCalories: totalCalories(),
+        date: Date.now(),
       },
       userId: 1,
-      date: Date.now(),
     });
+    setState({...state, consumedFoods: []});
   };
 
   useEffect(() => {

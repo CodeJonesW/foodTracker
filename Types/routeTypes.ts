@@ -8,8 +8,8 @@ export type RootStackParamList = {
     dailyConsumptionData: {
       consumptions: Consumption[];
       totalCalories: number;
+      date: number;
     };
-    date: number;
   };
 };
 export type ProfileProps = NativeStackScreenProps<
