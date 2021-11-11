@@ -16,8 +16,6 @@ export interface Consumption {
   calories: string;
 }
 export interface WhatDidYouEatState {
-  foodInput?: string;
-  foodCalories?: string;
   consumedFoods?: Consumption[];
 }
 const WhatDidYouEat = ({route, navigation}: HomeProps) => {
@@ -39,12 +37,19 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
       name: foodInput,
       calories: foodCalories,
     };
-
+    if (!state?.consumedFoods) {
+      setState({
+        consumedFoods: [consumption],
+      });
+    } else {
+      setState({
+        consumedFoods: [...state.consumedFoods, consumption],
+      });
+    }
     setState({
-      foodInput: '',
-      foodCalories: '',
       consumedFoods: [...consumedFoods, consumption],
     });
+
     setConsumptions([...consumedFoods, consumption]);
   };
 
