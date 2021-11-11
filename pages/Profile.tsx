@@ -11,34 +11,74 @@ import {Consumption} from './WhatDidYouEat';
 
 const Profile = ({route, navigation}: ProfileProps) => {
   const {dailyConsumptionData, userId, date} = route.params;
-  useEffect(() => {
-    console.log(dailyConsumptionData);
-  }, []);
-  return (
-    <SafeAreaView>
-      <View style={styles.container}>
+  const [state, setState] = React.useState(() => {
+    return {
+      status: 'pending',
+      error: null,
+      allDaysOfConsumptions: null,
+      // @ts-ignore
+      newDayOfConsumptions: null,
+    };
+  });
+  const {status, error, allDaysOfConsumptions, newDayOfConsumptions} = state;
+
+  console.log(state);
+
+  React.useEffect(() => {
+    if (!dailyConsumptionData) {
+      return;
+    }
+    // @ts-ignore
+    setState({newDayOfConsumptions: dailyConsumptionData, status: 'loaded'});
+
+    return () => {
+      console.log('clean up!, i run when the component is unmounted');
+    };
+  }, [dailyConsumptionData]);
+
+  if (status === 'pending') {
+    return (
+      <SafeAreaView>
         <View>
-          <Text>Date: {date}</Text>
-          <Text>
-            Daily Total Calories: {dailyConsumptionData.totalCalories}
-          </Text>
-          {dailyConsumptionData.consumptions.map((consumption: Consumption) => {
-            return (
-              <View>
-                <Text>Consumption: {consumption.name}</Text>
-                <Text>Calories: {consumption.calories}</Text>
-              </View>
-            );
-          })}
-          <TouchableOpacity
-            style={styles.button}
-            accessibilityLabel="Record a Profile">
-            <Text style={styles.cake}>🍰</Text>
-          </TouchableOpacity>
+          <Text>Eat Some Food!</Text>
         </View>
-      </View>
-    </SafeAreaView>
-  );
+      </SafeAreaView>
+    );
+  } else {
+    return (
+      <SafeAreaView>
+        {newDayOfConsumptions || allDaysOfConsumptions !== null ? (
+          <View style={styles.container}>
+            <View>
+              <Text>Date: {date}</Text>
+              <Text>
+                Daily Total Calories: {dailyConsumptionData.totalCalories}
+              </Text>
+              {dailyConsumptionData.consumptions.map(
+                (consumption: Consumption) => {
+                  return (
+                    <View>
+                      <Text>Consumption: {consumption.name}</Text>
+                      <Text>Calories: {consumption.calories}</Text>
+                    </View>
+                  );
+                },
+              )}
+              <TouchableOpacity
+                style={styles.button}
+                accessibilityLabel="Record a Profile">
+                <Text style={styles.cake}>🍰</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        ) : (
+          <View>
+            <Text>Eat some food to see your data here</Text>
+          </View>
+        )}
+      </SafeAreaView>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
