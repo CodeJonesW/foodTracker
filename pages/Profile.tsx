@@ -40,7 +40,9 @@ const Profile = ({route, navigation}: ProfileProps) => {
     return (
       <SafeAreaView>
         <View>
-          <Text>Eat Some Food!</Text>
+          <Text>
+            Eat some food and then press the save button to see your data here!
+          </Text>
         </View>
       </SafeAreaView>
     );
@@ -73,7 +75,7 @@ const Profile = ({route, navigation}: ProfileProps) => {
           </View>
         ) : (
           <View>
-            <Text>Eat some food to see your data here</Text>
+            <Text>Loading...</Text>
           </View>
         )}
       </SafeAreaView>

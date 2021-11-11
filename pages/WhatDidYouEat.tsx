@@ -23,8 +23,6 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
 
   const [state, setState] = useState<WhatDidYouEatState>();
 
-  // const {foodInput, foodCalories, consumedFoods} = state;
-
   const totalCalories = () => {
     let totalCalorieCount = 0;
     consumedFoods.map((food: Consumption) => {
@@ -46,16 +44,10 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
         consumedFoods: [...state.consumedFoods, consumption],
       });
     }
-    setState({
-      consumedFoods: [...consumedFoods, consumption],
-    });
-
-    setConsumptions([...consumedFoods, consumption]);
   };
 
   const deleteConsumption = (nameToDelete: string) => {
     let newFoodArray = consumedFoods.filter(food => food.name !== nameToDelete);
-    setConsumptions(newFoodArray);
     setState({...state, consumedFoods: newFoodArray});
   };
 
@@ -96,15 +88,17 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
             <Text>Name</Text>
             <Text style={{marginLeft: 170}}>Calories</Text>
           </View>
-          {consumedFoods.map((food: Consumption) => {
-            return (
-              <Food
-                key={food.name}
-                consumption={{name: food.name, calories: food.calories}}
-                deleteConsumption={deleteConsumption}
-              />
-            );
-          })}
+          {state?.consumedFoods !== undefined
+            ? state?.consumedFoods.map((food: Consumption) => {
+                return (
+                  <Food
+                    key={food.name}
+                    consumption={{name: food.name, calories: food.calories}}
+                    deleteConsumption={deleteConsumption}
+                  />
+                );
+              })
+            : null}
         </View>
       </ScrollView>
       <Text style={styles.totalCalorieCount}>
