@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
+import CompletedDayListItem from '../components/CompletedDayListItem';
 import {ProfileProps} from '../Types/routeTypes';
 import {Consumption} from './WhatDidYouEat';
 
@@ -21,14 +22,12 @@ const Profile = ({route, navigation}: ProfileProps) => {
   });
   const {status, error, allDaysOfConsumptions, newDayOfConsumptions} = state;
 
-  console.log(state);
-
   React.useEffect(() => {
     if (!dailyConsumptionData) {
       return;
     }
     let updatedAllDaysOfConsumptions = [
-      state.allDaysOfConsumptions,
+      ...state.allDaysOfConsumptions,
       dailyConsumptionData,
     ];
     setState({
@@ -59,29 +58,38 @@ const Profile = ({route, navigation}: ProfileProps) => {
       <SafeAreaView>
         {status === 'loaded' ? (
           <View style={styles.container}>
-            <View>
-              <Text>Date: {dailyConsumptionData.date}</Text>
-              <Text>
-                Daily Total Calories: {dailyConsumptionData.totalCalories}
-              </Text>
-              {dailyConsumptionData.consumptions.map(
-                (consumption: Consumption) => {
-                  return (
-                    <View>
-                      <Text>Consumption: {consumption.name}</Text>
-                      <Text>Calories: {consumption.calories}</Text>
-                    </View>
-                  );
-                },
-              )}
-              <TouchableOpacity
-                style={styles.button}
-                accessibilityLabel="Record a Profile">
-                <Text style={styles.cake}>🍰</Text>
-              </TouchableOpacity>
-            </View>
+            {allDaysOfConsumptions.map(dailyConsumptionData => {
+              return (
+                <CompletedDayListItem
+                  dailyConsumptionData={dailyConsumptionData}
+                />
+              );
+            })}
           </View>
         ) : (
+          // <View style={styles.container}>
+          //   <View>
+          //     <Text>Date: {dailyConsumptionData.date}</Text>
+          //     <Text>
+          //       Daily Total Calories: {dailyConsumptionData.totalCalories}
+          //     </Text>
+          //     {dailyConsumptionData.consumptions.map(
+          //       (consumption: Consumption) => {
+          //         return (
+          //           <View>
+          //             <Text>Consumption: {consumption.name}</Text>
+          //             <Text>Calories: {consumption.calories}</Text>
+          //           </View>
+          //         );
+          //       },
+          //     )}
+          //     <TouchableOpacity
+          //       style={styles.button}
+          //       accessibilityLabel="Record a Profile">
+          //       <Text style={styles.cake}>🍰</Text>
+          //     </TouchableOpacity>
+          //   </View>
+          // </View>
           <View>
             <Text>Loading...</Text>
           </View>

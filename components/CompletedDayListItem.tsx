@@ -3,24 +3,30 @@ import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {Consumption} from '../pages/WhatDidYouEat';
 
 const CompletedDayListItem: React.FC<{
-  trackedConsumptionDays: Consumption[];
-}> = ({children, trackedConsumptionDays}) => {
+  dailyConsumptionData: {
+    consumptions: Consumption[];
+    date: number;
+    totalCalories: number;
+  };
+}> = ({children, dailyConsumptionData}) => {
   return (
-    <View></View>
-
-    // <View style={{display: 'flex', flexDirection: 'row', margin: 20}}>
-    //   <View style={{width: 180, marginRight: '10%'}}>
-    //     <Text>{consumption.name}</Text>
-    //   </View>
-    //   <View style={{width: 100}}>
-    //     <Text>{consumption.calories}</Text>
-    //   </View>
-    //   <TouchableOpacity
-    //     style={styles.button}
-    //     accessibilityLabel="">
-    //     <Text>👐</Text>
-    //   </TouchableOpacity>
-    // </View>
+    <View>
+      <Text>Date: {dailyConsumptionData.date}</Text>
+      <Text>Daily Total Calories: {dailyConsumptionData.totalCalories}</Text>
+      {dailyConsumptionData.consumptions.map((consumption: Consumption) => {
+        return (
+          <View>
+            <Text>Consumption: {consumption.name}</Text>
+            <Text>Calories: {consumption.calories}</Text>
+          </View>
+        );
+      })}
+      <TouchableOpacity
+        style={styles.button}
+        accessibilityLabel="Record a Profile">
+        <Text>🍰</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 

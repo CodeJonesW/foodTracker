@@ -25,9 +25,11 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
 
   const totalCalories = () => {
     let totalCalorieCount = 0;
-    consumedFoods.map((food: Consumption) => {
-      totalCalorieCount = totalCalorieCount + parseInt(food.calories);
-    });
+    if (state?.consumedFoods !== undefined) {
+      state?.consumedFoods.forEach((food: Consumption) => {
+        totalCalorieCount = totalCalorieCount + parseInt(food.calories);
+      });
+    }
     return totalCalorieCount;
   };
   const addConsumption = (foodInput: string, foodCalories: string) => {
