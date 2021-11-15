@@ -41,6 +41,7 @@ const FoodInputBar: React.FC<{
           placeholder="Enter what you ate! 👈"
           placeholderTextColor="black"
           keyboardType="ascii-capable"
+          testID="foodNameInput"
           onChangeText={text => setFoodInput(text)}
           value={foodInput}
         />
@@ -49,6 +50,7 @@ const FoodInputBar: React.FC<{
           placeholder="Calories? 👈"
           placeholderTextColor="black"
           keyboardType="number-pad"
+          testID="calorieInput"
           onChangeText={text => setFoodCalories(text)}
           value={foodCalories}
         />

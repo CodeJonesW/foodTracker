@@ -14,40 +14,31 @@ const createTestProps = (props: Object) => ({
   ...props,
 });
 describe('WhatDidYouEat screen', () => {
-  test('uses the food input component to munch(save) a consumption', () => {
+  test('user can munch(save) a consumption', () => {
     let props: any;
     props = createTestProps({});
-    const {getByText, getByPlaceholderText, queryByTestId} = render(
-      <WhatDidYouEat {...props} />,
-    );
-    // refactor to avoid testing implementation details
-    // placeholder text could change
-    let foodNameInput = getByPlaceholderText('Enter what you ate! 👈');
-    let calorieInput = getByPlaceholderText('Calories? 👈');
-    fireEvent.changeText(foodNameInput, 'cheesecake');
-    fireEvent.changeText(calorieInput, '1000');
-    let munchBtn = getByText('Munch');
-    fireEvent.press(munchBtn);
+    const {getByText, getByTestId} = render(<WhatDidYouEat {...props} />);
 
-    expect(queryByTestId('consumptionName')?.children[0]).toEqual('cheesecake');
-    expect(queryByTestId('consumptionCalories')?.children[0]).toEqual('1000');
+    fireEvent.changeText(getByTestId('foodNameInput'), 'cheesecake');
+    fireEvent.changeText(getByTestId('calorieInput'), '1000');
+    fireEvent.press(getByText('Munch'));
+
+    expect(getByTestId('consumptionName')?.children[0]).toEqual('cheesecake');
+    expect(getByTestId('consumptionCalories')?.children[0]).toEqual('1000');
   });
-  test('uses the food component to delete a consumption', () => {
+  test('user can add and then delete a consumption', () => {
     let props: any;
     props = createTestProps({});
-    const {getByText, getByPlaceholderText, queryByTestId} = render(
-      <WhatDidYouEat {...props} />,
-    );
-    // refactor to avoid testing implementation details
-    // placeholder text could change
-    let foodNameInput = getByPlaceholderText('Enter what you ate! 👈');
-    let calorieInput = getByPlaceholderText('Calories? 👈');
+    const {getByText, getByTestId} = render(<WhatDidYouEat {...props} />);
+
+    let foodNameInput = getByTestId('foodNameInput');
+    let calorieInput = getByTestId('calorieInput');
     fireEvent.changeText(foodNameInput, 'cheesecake');
     fireEvent.changeText(calorieInput, '1000');
-    let munchBtn = getByText('Munch');
-    fireEvent.press(munchBtn);
+    fireEvent.press(getByText('Munch'));
+    fireEvent.press(getByText('❌'));
 
-    expect(queryByTestId('consumptionName')?.children[0]).toEqual('cheesecake');
-    expect(queryByTestId('consumptionCalories')?.children[0]).toEqual('1000');
+    expect(getByTestId('consumptionName')?.children[0]).toBeFalsy();
+    expect(getByTestId('consumptionCalories')?.children[0]).toBeFalsy();
   });
 });
