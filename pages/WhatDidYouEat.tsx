@@ -69,10 +69,6 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
     setState({...state, consumedFoods: []});
   };
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
