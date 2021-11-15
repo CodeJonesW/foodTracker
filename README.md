@@ -4,13 +4,16 @@ I am hungry all the time so I better keep track 🥑 🍰 🥧
 
 Technologies I am using
 
-React Native
+Framework: React Native
 
-Fastlane 🙏
+Libraries: [
+Fastlane 🙏,
+RN Navigation 🚦,
+React Native-Picker ☝️,
+]
 
-RN Navigation 🚦
-
-React Native-Picker ☝️
+Testing - Jest
+npm test
 
 Deployments 🍀
 
