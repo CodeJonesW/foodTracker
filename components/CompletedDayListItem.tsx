@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {Consumption} from '../pages/WhatDidYouEat';
+import {Consumption} from '../screens/WhatDidYouEat';
 
 const CompletedDayListItem: React.FC<{
   dailyConsumptionData: {

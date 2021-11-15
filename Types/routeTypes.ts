@@ -1,5 +1,5 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Consumption} from '../pages/WhatDidYouEat';
+import {Consumption} from '../screens/WhatDidYouEat';
 
 export type RootStackParamList = {
   Home: {data: string};
