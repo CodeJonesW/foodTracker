@@ -13,14 +13,16 @@ const CompletedDayListItem: React.FC<{
     <View>
       <Text>Date: {dailyConsumptionData.date}</Text>
       <Text>Daily Total Calories: {dailyConsumptionData.totalCalories}</Text>
-      {dailyConsumptionData.consumptions.map((consumption: Consumption) => {
-        return (
-          <View>
-            <Text>Consumption: {consumption.name}</Text>
-            <Text>Calories: {consumption.calories}</Text>
-          </View>
-        );
-      })}
+      {dailyConsumptionData.consumptions.map(
+        (consumption: Consumption, index) => {
+          return (
+            <View key={index}>
+              <Text>Consumption: {consumption.name}</Text>
+              <Text>Calories: {consumption.calories}</Text>
+            </View>
+          );
+        },
+      )}
       <TouchableOpacity
         style={styles.button}
         accessibilityLabel="Record a Profile">

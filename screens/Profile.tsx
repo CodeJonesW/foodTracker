@@ -58,9 +58,10 @@ const Profile = ({route, navigation}: ProfileProps) => {
       <SafeAreaView>
         {status === 'loaded' ? (
           <View style={styles.container}>
-            {allDaysOfConsumptions.map(dailyConsumptionData => {
+            {allDaysOfConsumptions.map((dailyConsumptionData, index) => {
               return (
                 <CompletedDayListItem
+                  key={index}
                   dailyConsumptionData={dailyConsumptionData}
                 />
               );
