@@ -8,12 +8,13 @@ const Food: React.FC<{
   return (
     <View style={{display: 'flex', flexDirection: 'row', margin: 20}}>
       <View style={{width: 180, marginRight: '10%'}}>
-        <Text>{consumption.name}</Text>
+        <Text testID="consumptionName">{consumption.name}</Text>
       </View>
       <View style={{width: 100}}>
-        <Text>{consumption.calories}</Text>
+        <Text testID="consumptionCalories">{consumption.calories}</Text>
       </View>
       <TouchableOpacity
+        testID="deleteConsumption"
         onPress={() => deleteConsumption(consumption.name)}
         style={styles.button}
         accessibilityLabel="Delete a food consumption">
