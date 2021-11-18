@@ -14,7 +14,7 @@ const createTestProps = (props: Object) => ({
   ...props,
 });
 describe('WhatDidYouEat screen', () => {
-  test('user can munch(save) a consumption', () => {
+  test('user can save a consumption', () => {
     let props: any;
     props = createTestProps({});
     const {getByText, getByTestId} = render(<WhatDidYouEat {...props} />);
@@ -29,16 +29,18 @@ describe('WhatDidYouEat screen', () => {
   test('user can add and then delete a consumption', () => {
     let props: any;
     props = createTestProps({});
-    const {getByText, getByTestId} = render(<WhatDidYouEat {...props} />);
+    const {getByText, getByTestId, queryByTestId} = render(
+      <WhatDidYouEat {...props} />,
+    );
 
     let foodNameInput = getByTestId('foodNameInput');
     let calorieInput = getByTestId('calorieInput');
     fireEvent.changeText(foodNameInput, 'cheesecake');
     fireEvent.changeText(calorieInput, '1000');
     fireEvent.press(getByText('Munch'));
-    fireEvent.press(getByText('❌'));
+    fireEvent.press(getByTestId('deleteConsumption'));
 
-    expect(getByTestId('consumptionName')?.children[0]).toBeFalsy();
-    expect(getByTestId('consumptionCalories')?.children[0]).toBeFalsy();
+    expect(queryByTestId('consumptionName')?.children[0]).toBeFalsy();
+    expect(queryByTestId('consumptionCalories')?.children[0]).toBeFalsy();
   });
 });
