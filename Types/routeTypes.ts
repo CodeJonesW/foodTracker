@@ -8,7 +8,7 @@ export type RootStackParamList = {
     dailyConsumptionData: {
       consumptions: Consumption[];
       totalCalories: number;
-      date: number;
+      date: string;
     };
   };
 };

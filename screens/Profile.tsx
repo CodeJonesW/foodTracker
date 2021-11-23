@@ -47,7 +47,7 @@ const Profile = ({route, navigation}: ProfileProps) => {
     return (
       <SafeAreaView>
         <View>
-          <Text accessibilityLabel="ConsumeFoodToSeeData">
+          <Text style={styles.header} accessibilityLabel="ConsumeFoodToSeeData">
             Eat some food and then press the save button to see your data here!
           </Text>
         </View>
@@ -91,8 +91,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     marginTop: 250,
   },
-  cake: {
-    fontSize: 100,
+  header: {
+    fontSize: 35,
+    margin: 50,
   },
   container: {
     width: '100%',

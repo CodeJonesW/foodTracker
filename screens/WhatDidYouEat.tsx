@@ -11,6 +11,8 @@ import {
 import FoodInputBar from '../components/FoodInputBar';
 import Food from '../components/Food';
 import {HomeProps} from '../Types/routeTypes';
+import moment from 'moment';
+
 export interface Consumption {
   name: string;
   calories: string;
@@ -62,7 +64,7 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
       dailyConsumptionData: {
         consumptions: state.consumedFoods,
         totalCalories: totalCalories(),
-        date: Date.now(),
+        date: moment().format('MMMM Do YYYY'),
       },
       userId: 1,
     });
@@ -73,6 +75,7 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
     <SafeAreaView style={styles.container}>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Text style={styles.header}>What did you eat?</Text>
+        <Text style={styles.subHeader}>{moment().format('MMMM Do YYYY')}</Text>
         <View>
           <FoodInputBar addConsumption={addConsumption} />
         </View>
@@ -121,7 +124,13 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 35,
-    margin: 50,
+    marginTop: 50,
+    marginLeft: 40,
+  },
+  subHeader: {
+    fontSize: 15,
+    margin: 10,
+    marginLeft: 110,
   },
   totalCalorieCount: {
     width: 300,
@@ -132,6 +141,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     marginLeft: 20,
+    marginBottom: 20,
     justifyContent: 'center',
     alignContent: 'center',
     alignItems: 'center',
