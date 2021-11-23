@@ -106,7 +106,7 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
       <TouchableOpacity
         onPress={saveDay}
         style={styles.button}
-        accessibilityLabel="Record a food">
+        accessibilityLabel="saveDayOfConsumptions">
         <Text>💾</Text>
       </TouchableOpacity>
     </SafeAreaView>

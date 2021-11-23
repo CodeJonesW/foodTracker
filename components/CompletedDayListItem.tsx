@@ -10,7 +10,7 @@ const CompletedDayListItem: React.FC<{
   };
 }> = ({children, dailyConsumptionData}) => {
   return (
-    <View>
+    <View accessibilityLabel="completedDayListItem">
       <Text>Date: {dailyConsumptionData.date}</Text>
       <Text>Daily Total Calories: {dailyConsumptionData.totalCalories}</Text>
       {dailyConsumptionData.consumptions.map(

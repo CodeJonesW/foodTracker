@@ -7,9 +7,8 @@ describe('Food component', () => {
       name: 'cheesecake',
       calories: '1000',
     };
-    const deleteConsumption = () => {
-      console.log('delete');
-    };
+    const deleteConsumption = jest.fn();
+
     const {getByTestId} = render(
       <Food consumption={consumption1} deleteConsumption={deleteConsumption} />,
     );

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {getByTestId, screen} from '@testing-library/dom';
 import {render, fireEvent} from '@testing-library/react-native';
-import userEvent from '@testing-library/user-event';
+import {NavigationContainer} from '@react-navigation/native';
 import Food from '../components/Food';
 import WhatDidYouEat from '../screens/WhatDidYouEat';
 /**
@@ -43,4 +43,22 @@ describe('WhatDidYouEat screen', () => {
     expect(queryByTestId('consumptionName')?.children[0]).toBeFalsy();
     expect(queryByTestId('consumptionCalories')?.children[0]).toBeFalsy();
   });
+  // test('user can save a day of consumptions', () => {
+  //   let props: any;
+  //   props = createTestProps({});
+  //   const {getByText, getByTestId, getByLabelText} = render(
+  //     <WhatDidYouEat {...props} />,
+  //   );
+
+  //   fireEvent.changeText(getByTestId('foodNameInput'), 'cheesecake');
+  //   fireEvent.changeText(getByTestId('calorieInput'), '1000');
+  //   fireEvent.press(getByText('Munch'));
+
+  //   fireEvent.changeText(getByTestId('foodNameInput'), 'chicken and rice');
+  //   fireEvent.changeText(getByTestId('calorieInput'), '700');
+  //   fireEvent.press(getByText('Munch'));
+
+  //   fireEvent.press(getByLabelText('saveDayOfConsumptions'));
+  //   expect(getByLabelText('completedDayListItem')).toBeTruthy();
+  // });
 });
