@@ -5,31 +5,24 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   TouchableOpacity,
 } from 'react-native';
 import FoodInputBar from '../components/FoodInputBar';
 import Food from '../components/Food';
-import {HomeProps} from '../Types/routeTypes';
+import {HomeProps} from '../types/routeTypes';
 import moment from 'moment';
+import {WhatDidYouEatData, Consumption} from '../types/componentTypes';
 
-export interface Consumption {
-  name: string;
-  calories: string;
-}
-export interface WhatDidYouEatState {
-  consumedFoods?: Consumption[];
-}
 const WhatDidYouEat = ({route, navigation}: HomeProps) => {
   const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
 
-  const [state, setState] = useState<WhatDidYouEatState>();
+  const [state, setState] = useState<WhatDidYouEatData>();
 
   const totalCalories = () => {
     let totalCalorieCount = 0;
     if (state?.consumedFoods !== undefined) {
-      state?.consumedFoods.forEach((food: Consumption) => {
-        totalCalorieCount = totalCalorieCount + parseInt(food.calories);
+      state?.consumedFoods.forEach((consumedFood: Consumption) => {
+        totalCalorieCount = totalCalorieCount + consumedFood.calories;
       });
     }
     return totalCalorieCount;
@@ -37,7 +30,7 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
   const addConsumption = (foodInput: string, foodCalories: string) => {
     let consumption = {
       name: foodInput,
-      calories: foodCalories,
+      calories: parseInt(foodCalories),
     };
     if (!state?.consumedFoods) {
       setState({
@@ -60,14 +53,8 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
     if (!state?.consumedFoods) {
       return;
     }
-    navigation.navigate('Profile', {
-      dailyConsumptionData: {
-        consumptions: state.consumedFoods,
-        totalCalories: totalCalories(),
-        date: moment().format('MMMM Do YYYY'),
-      },
-      userId: 1,
-    });
+    // here is where we save day data to api or provider
+    // navigation.navigate('Profile');
     setState({...state, consumedFoods: []});
   };
 

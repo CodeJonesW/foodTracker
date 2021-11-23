@@ -1,43 +1,24 @@
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import CompletedDayListItem from '../components/CompletedDayListItem';
-import {ProfileProps} from '../Types/routeTypes';
-import {Consumption} from './WhatDidYouEat';
+import {ProfileProps} from '../types/routeTypes';
+import {dailyConsumptionData as mockDailyConsumptionData} from '../mockdata/data';
+import {
+  AllDaysOfConsumptions,
+  WhatDidYouEatData,
+} from '../types/componentTypes';
 
 const Profile = ({route, navigation}: ProfileProps) => {
-  const {dailyConsumptionData, userId} = route.params;
-  const [state, setState] = React.useState(() => {
-    return {
-      status: 'pending',
-      error: null,
-      allDaysOfConsumptions: [],
-      newDayOfConsumptions: null,
-    };
+  // skipping pending for now because component always has mock data atm
+  const [loadingState, setLoadingState] = useState<string>('loaded');
+
+  const [allDaysOfConsumptions, setAllDays] = useState<
+    AllDaysOfConsumptions | undefined
+  >({
+    daysOfConsumptions: [mockDailyConsumptionData],
   });
-  const {status, error, allDaysOfConsumptions, newDayOfConsumptions} = state;
 
-  useEffect(() => {
-    if (!dailyConsumptionData) {
-      return;
-    }
-    let updatedAllDaysOfConsumptions = [
-      ...state.allDaysOfConsumptions,
-      dailyConsumptionData,
-    ];
-    setState({
-      // @ts-ignore
-      newDayOfConsumptions: dailyConsumptionData,
-      // @ts-ignore
-      allDaysOfConsumptions: updatedAllDaysOfConsumptions,
-      status: 'loaded',
-    });
-
-    return () => {
-      console.log('clean up!, i run when the component is unmounted');
-    };
-  }, [dailyConsumptionData]);
-
-  if (status === 'pending') {
+  if (loadingState === 'pending') {
     return (
       <SafeAreaView>
         <View>
@@ -47,19 +28,18 @@ const Profile = ({route, navigation}: ProfileProps) => {
         </View>
       </SafeAreaView>
     );
-  } else {
+  } else if (loadingState === 'loaded') {
     return (
       <SafeAreaView>
-        {status === 'loaded' ? (
-          <View style={styles.container}>
-            {allDaysOfConsumptions.map((dailyConsumptionData, index) => {
-              return (
-                <CompletedDayListItem
-                  key={index}
-                  dailyConsumptionData={dailyConsumptionData}
-                />
-              );
-            })}
+        {allDaysOfConsumptions !== undefined ? (
+          <View accessibilityLabel="profileView" style={styles.container}>
+            {allDaysOfConsumptions.daysOfConsumptions.map(
+              (dayOfData: WhatDidYouEatData, index) => {
+                return (
+                  <CompletedDayListItem key={index} dailyData={dayOfData} />
+                );
+              },
+            )}
           </View>
         ) : (
           <View>
@@ -67,6 +47,12 @@ const Profile = ({route, navigation}: ProfileProps) => {
           </View>
         )}
       </SafeAreaView>
+    );
+  } else {
+    return (
+      <View>
+        <Text>Something went wrong</Text>
+      </View>
     );
   }
 };

@@ -1,33 +1,40 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {Consumption} from '../screens/WhatDidYouEat';
+import {Consumption, WhatDidYouEatData} from '../types/componentTypes';
 
 const CompletedDayListItem: React.FC<{
-  dailyConsumptionData: {
-    consumptions: Consumption[];
-    date: number;
-    totalCalories: number;
-  };
-}> = ({children, dailyConsumptionData}) => {
+  dailyData: WhatDidYouEatData;
+}> = ({children, dailyData: dailyConsumptionData}) => {
   return (
-    <View accessibilityLabel="completedDayListItem">
-      <Text>Date: {dailyConsumptionData.date}</Text>
-      <Text>Daily Total Calories: {dailyConsumptionData.totalCalories}</Text>
-      {dailyConsumptionData.consumptions.map(
-        (consumption: Consumption, index) => {
-          return (
-            <View key={index}>
-              <Text>Consumption: {consumption.name}</Text>
-              <Text>Calories: {consumption.calories}</Text>
-            </View>
-          );
-        },
+    <View>
+      {dailyConsumptionData &&
+      dailyConsumptionData.consumedFoods !== undefined ? (
+        <View accessibilityLabel="completedDayListItem">
+          <Text>Date: {dailyConsumptionData.date}</Text>
+          <Text>
+            Daily Total Calories: {dailyConsumptionData.totalCalories}
+          </Text>
+          {dailyConsumptionData.consumedFoods.map(
+            (consumption: Consumption, index) => {
+              return (
+                <View key={index}>
+                  <Text>Consumption: {consumption.name}</Text>
+                  <Text>Calories: {consumption.calories}</Text>
+                </View>
+              );
+            },
+          )}
+          <TouchableOpacity
+            style={styles.button}
+            accessibilityLabel="Record a Profile">
+            <Text>🍰</Text>
+          </TouchableOpacity>
+        </View>
+      ) : (
+        <View>
+          <Text>Loading</Text>
+        </View>
       )}
-      <TouchableOpacity
-        style={styles.button}
-        accessibilityLabel="Record a Profile">
-        <Text>🍰</Text>
-      </TouchableOpacity>
     </View>
   );
 };

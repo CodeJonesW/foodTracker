@@ -5,7 +5,7 @@ describe('Food component', () => {
   test('Food component renders props for name and calories', () => {
     const consumption1 = {
       name: 'cheesecake',
-      calories: '1000',
+      calories: 1000,
     };
     const deleteConsumption = jest.fn();
 
@@ -13,6 +13,6 @@ describe('Food component', () => {
       <Food consumption={consumption1} deleteConsumption={deleteConsumption} />,
     );
     expect(getByTestId('consumptionName').props.children).toBe('cheesecake');
-    expect(getByTestId('consumptionCalories').props.children).toBe('1000');
+    expect(getByTestId('consumptionCalories').props.children).toBe(1000);
   });
 });

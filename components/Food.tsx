@@ -1,8 +1,9 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Consumption} from '../types/componentTypes';
 
 const Food: React.FC<{
-  consumption: {name: string; calories: string};
+  consumption: Consumption;
   deleteConsumption: Function;
 }> = ({children, consumption, deleteConsumption}) => {
   return (
