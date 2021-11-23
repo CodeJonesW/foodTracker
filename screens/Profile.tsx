@@ -1,11 +1,5 @@
 import React, {useEffect} from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-} from 'react-native';
+import {Text, View, StyleSheet, SafeAreaView} from 'react-native';
 import CompletedDayListItem from '../components/CompletedDayListItem';
 import {ProfileProps} from '../Types/routeTypes';
 import {Consumption} from './WhatDidYouEat';
@@ -22,7 +16,7 @@ const Profile = ({route, navigation}: ProfileProps) => {
   });
   const {status, error, allDaysOfConsumptions, newDayOfConsumptions} = state;
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!dailyConsumptionData) {
       return;
     }
