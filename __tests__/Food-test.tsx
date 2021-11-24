@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {render} from '@testing-library/react-native';
 import Food from '../components/Food';
+
 describe('Food component', () => {
   test('Food component renders props for name and calories', () => {
     const consumption1 = {
