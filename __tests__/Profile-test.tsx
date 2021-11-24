@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {render} from '@testing-library/react-native';
 import Profile from '../screens/Profile';
-import {ProfileProps} from '../types/routeTypes';
+import type {ProfileProps} from '../types/routeTypes';
 
-const createTestProps = (props: Object) => ({
+const createTestProps = (props: Partial<ProfileProps>) => ({
   navigation: {
     navigate: jest.fn(),
   },
