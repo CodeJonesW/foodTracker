@@ -14,7 +14,7 @@ describe('Profile component', () => {
   test('Profile component renders correctly with mock data', () => {
     let props: any;
     props = createTestProps({});
-    const {getByTestId, getByA11yLabel} = render(<Profile {...props} />);
+    const {getByA11yLabel} = render(<Profile {...props} />);
     expect(getByA11yLabel('profileView')).toBeTruthy();
   });
 });
