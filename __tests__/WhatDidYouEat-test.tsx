@@ -3,7 +3,7 @@ import {getByTestId, screen} from '@testing-library/dom';
 import {render, fireEvent} from '@testing-library/react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import Food from '../components/Food';
-import WhatDidYouEat from 'screens/WhatDidYouEat';
+import WhatDidYouEat from '../screens/WhatDidYouEat';
 /**
  * @jest-environment jsdom
  */
