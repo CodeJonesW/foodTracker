@@ -21,10 +21,3 @@ jobs:
         with:
           coverage-command: |
             npm test
-      - name: Test My action
-        id: my_action
-        with:
-          some_input: 'MyOutputRML'
-
-      - name: Check the output from My action
-        run: echo "${{ steps.my_action.outputs.some_output }}"
