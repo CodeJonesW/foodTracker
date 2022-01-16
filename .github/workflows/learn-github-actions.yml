@@ -22,5 +22,4 @@ jobs:
         uses: tj-actions/coverage-reporter@v3
         with:
           coverage-command: |
-            cd foodTrack
             npm test
