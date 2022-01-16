@@ -23,7 +23,6 @@ jobs:
             npm test
       - name: Test My action
         id: my_action
-        uses: BriRanTestActions/Test-JavaScript-action@master
         with:
           some_input: 'MyOutputRML'
 
