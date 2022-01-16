@@ -20,6 +20,7 @@ jobs:
         uses: tj-actions/coverage-reporter@v3
         with:
           coverage-command: |
-            echo "::set-output name=FOO:npm test"
+            npm test
+            | echo "::set-output name=FOO:BAR"
       - name: Use it
         run: echo ${{ steps.step_one.outputs.FOO }}
