@@ -20,7 +20,6 @@ jobs:
         uses: tj-actions/coverage-reporter@v3
         with:
           coverage-command: |
-            cd foodTrack
             npm test "::set-output name=FOO:npm test"
       - name: Use it
         run: echo ${{ steps.step_one.outputs.FOO }}
