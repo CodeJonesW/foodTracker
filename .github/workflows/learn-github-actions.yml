@@ -13,11 +13,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: 🗃 install
+      - name: 🗃 Install
         run: |
           npm install
-      - name: 🧪 install and test
+      - name: 🧪 Test
         uses: tj-actions/coverage-reporter@v3
         with:
           coverage-command: |
+            cd foodTrack
             npm test
