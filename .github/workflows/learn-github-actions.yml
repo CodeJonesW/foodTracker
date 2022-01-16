@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 😆 Checkout repo
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
         with:
           path: foodTrack
       - name: 🔔 Get Node.js
@@ -13,8 +13,8 @@ jobs:
         with:
           node-version: '16'
       - name: install and test
-      - uses: actions/checkout@v2
-      - run: |
+        uses: actions/checkout@v2
+        run: |
           cd foodTrack
           npm install
           npm test
