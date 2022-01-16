@@ -21,4 +21,4 @@ jobs:
         with:
           coverage-command: |
             cd foodTrack
-            npm test | echo this is my messsage!
+            npm test | echo
