@@ -21,9 +21,11 @@ jobs:
         with:
           coverage-command: |
             npm test
-      - name: variable
-        run: |
-          ::set-output name=FOO:BAR
-      - name: Use it
-        run: |
-          echo ${{ steps.step_one.outputs.FOO }}
+      - name: Test My action
+        id: my_action
+        uses: BriRanTestActions/Test-JavaScript-action@master
+        with:
+          some_input: 'MyOutputRML'
+
+      - name: Check the output from My action
+        run: echo "${{ steps.my_action.outputs.some_output }}"

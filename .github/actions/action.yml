@@ -1,0 +1,12 @@
+- name: My action
+  description: executes bash script
+  inputs:
+    some_input:
+      description: some input
+      required: true
+  outputs:
+    some_output:
+    description: some output
+  runs:
+  using: node12
+  main: dist/index.js
