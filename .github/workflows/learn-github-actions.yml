@@ -1,8 +1,5 @@
 name: learn-github-actions
-on:
-  pull_request:
-    branches:
-      - master
+on: pull_request
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -20,5 +17,5 @@ jobs:
         with:
           coverage-command: |
             cd foodTrack
-            npm install
+            npm install |
             npm test
