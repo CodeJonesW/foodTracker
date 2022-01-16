@@ -9,8 +9,6 @@ jobs:
     steps:
       - name: 😆 Checkout repo
         uses: actions/checkout@v2
-        with:
-          path: ./foodTrack
       - name: 🔔 Get Node.js
         uses: actions/setup-node@v2
         with:
