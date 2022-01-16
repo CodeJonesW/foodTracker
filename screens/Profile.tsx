@@ -23,7 +23,8 @@ const Profile = ({route, navigation}: ProfileProps) => {
       <SafeAreaView>
         <View>
           <Text style={styles.header} accessibilityLabel="ConsumeFoodToSeeData">
-            Eat some food and then press the save button to see your data here!
+            🌮 Eat some food and then press the save button to see your data
+            here!
           </Text>
         </View>
       </SafeAreaView>
