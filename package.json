@@ -46,6 +46,17 @@
   },
   "jest": {
     "preset": "react-native",
+    "coverageReporters": [
+      "clover",
+      "json",
+      "lcov",
+      [
+        "text",
+        {
+          "skipFull": true
+        }
+      ]
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
