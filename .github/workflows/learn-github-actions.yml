@@ -13,10 +13,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: 🗃 Install
+      - name: 🗃 install
         run: |
           npm install
-      - name: 🧪 Test
+      - name: 🧪 install and test
         uses: tj-actions/coverage-reporter@v3
         with:
           coverage-command: |
