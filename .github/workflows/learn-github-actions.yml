@@ -21,6 +21,9 @@ jobs:
         with:
           coverage-command: |
             npm test
-            | echo "::set-output name=FOO:BAR"
+      - name: variable
+        run: |
+          echo "::set-output name=FOO:BAR"
       - name: Use it
-        run: echo ${{ steps.step_one.outputs.FOO }}
+        run: |
+          echo ${{ steps.step_one.outputs.FOO }}
