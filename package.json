@@ -49,9 +49,7 @@
     "preset": "react-native",
     "coverageProvider": "babel",
     "coverageReporters": [
-      "clover",
       "json",
-      "lcov",
       [
         "text",
         {
