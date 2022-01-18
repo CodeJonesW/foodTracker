@@ -12,6 +12,7 @@ import {RootStackParamList} from './Types/routeTypes';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
 // note for commit change
+// second commit note
 const App = () => {
   return (
     <NavigationContainer>
