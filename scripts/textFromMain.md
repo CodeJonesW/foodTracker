@@ -1,8 +1,1 @@
-new text from main
-
-new new new
-
-third
-fourth
-
-sixth
+this is the new text for commiting
