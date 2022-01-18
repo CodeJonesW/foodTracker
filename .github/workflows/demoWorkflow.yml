@@ -1,4 +1,4 @@
-name: learning actions
+name: learning actions more
 on:
   pull_request:
     branches:
