@@ -6,4 +6,8 @@ third
 
 fourth
 
+<<<<<<< HEAD
 fifth
+=======
+sixth
+>>>>>>> a0f8ccc (sixth)
