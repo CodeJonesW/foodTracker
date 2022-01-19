@@ -3,11 +3,10 @@
 export const newFeature2 = () => {
   console.log('What an awesome feature'!);
 };
+export const newFeature5 = () => {
+  console.log('this is revolutionary');
+};
 
 export const newFeature6 = () => {
   console.log('What an awesome feature'!);
-};
-
-export const newFeature5 = () => {
-  console.log('this is revolutionary');
 };
