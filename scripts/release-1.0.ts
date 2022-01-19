@@ -7,3 +7,7 @@ export const newFeature2 = () => {
 export const newFeature3 = () => {
   console.log('this is revolutionary');
 };
+
+export const newFeature5 = () => {
+  console.log('this is revolutionary');
+};
