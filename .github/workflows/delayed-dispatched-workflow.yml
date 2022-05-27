@@ -35,7 +35,6 @@ jobs:
       - name: Fake work
         id: actualWorkStep
         continue-on-error: true
-        run: 'exit 1'
         ## Call itself again
         uses: benc-uk/workflow-dispatch@v1
         ## If actualWorkStep failed and maxAttempts hasn't
