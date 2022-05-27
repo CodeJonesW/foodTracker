@@ -24,9 +24,11 @@ jobs:
             npm test
   postWorkflow:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: delayed-dispatched-workflow
           repo: codejonesw/foodTracker
-          token: ${{ secrets.PAT }}
+          token: ${{ env.GITHUB_TOKEN }}
