@@ -26,7 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: benc-uk/workflow-dispatch@v1
-        ##   if: ## need to run delayed steps
         with:
         workflow: delayed-dispatched-workflow
         token: ${{ secrets.PERSONAL_TOKEN }}
