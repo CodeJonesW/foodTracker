@@ -45,7 +45,7 @@ on:
           steps.getNextAttemptNumber.outputs.result
         with:
         ## Pass the name of this workflow
-          workflow: ${{ github.learn-github-actions }}
+          workflow: learn-github-actions
           token: ${{ secrets.PERSONAL_TOKEN }}
         ## Pass increased attemptNumber and current maxAttempts
         inputs: |

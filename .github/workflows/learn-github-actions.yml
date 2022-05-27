@@ -23,11 +23,9 @@ jobs:
             cd foodTrack
             npm test
   postWorkflow:
-    - uses: benc-uk/workflow-dispatch@v1
-      if: ## need to run delayed steps
-      with:
-      ## It's the name defined in the delayed workflow file
-      ## Context ref of the main workflow is passed to the
-      ## dispatched workflow by default
-      workflow: delayed-dispatched-workflow
-      token: ${{ secrets.PERSONAL_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: benc-uk/workflow-dispatch@v1
+        with:
+        workflow: delayed-dispatched-workflow
+        token: ${{ secrets.PERSONAL_TOKEN }}
