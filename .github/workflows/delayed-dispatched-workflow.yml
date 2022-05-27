@@ -47,7 +47,7 @@ jobs:
           ## Pass the name of this workflow
           workflow: learn-github-actions
           token: ${{ secrets.PERSONAL_TOKEN }}
-          ## Pass increased attemptNumber and current maxAttempts
+          ## Pass increased attemptNumber and current maxAttemptssdf
           inputs: |
             { 
               "attemptNumber":
