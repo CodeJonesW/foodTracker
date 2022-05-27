@@ -22,10 +22,6 @@ jobs:
           coverage-command: |
             cd foodTrack
             npm test
-      - uses: cardinalby/schedule-job-action@v1
-        with:
-          ghToken: ${{ secrets.PAT }}
-          templateYmlFile: '.github/delayed-dispatched-workflow.yml'
   postWorkflow:
     runs-on: ubuntu-latest
     steps:
