@@ -12,4 +12,3 @@ export const newFeature5 = () => {
   console.log('this is revolutionary');
 };
 
-//commnet
