@@ -1,0 +1,57 @@
+name: delayed-dispatched-workflow
+on:
+  workflow_dispatch:
+    inputs:      
+      attemptNumber:
+        description: 'Attempt number'
+        required: false
+        default: '1'
+      maxAttempts:
+        description: 'Max attempts'
+        required: false
+        default: '5'
+  jobs:
+  doTheRestOfTheWork:
+    runs-on: ubuntu-latest  
+    ## It reffers to the created environment with
+    ## 1 day wait timer
+    environment: oneDayDelay
+    steps: 
+      - name: Get the next attempt number
+        id: getNextAttemptNumber
+        uses: cardinalby/js-eval-action@v1
+        env:
+          attemptNumber: ${{ github.event.inputs.attemptNumber }}
+          maxAttempts: ${{ github.event.inputs.maxAttempts }}
+        with:
+          expression: |
+            {
+              const 
+                attempt = parseInt(env.attemptNumber),
+                max = parseInt(env.maxAttempts);
+              assert(attempt && max && max >= attempt);
+              return attempt < max ? attempt + 1 : '';
+            } 
+      - name: Fake work
+        id: actualWorkStep
+        continue-on-error: true
+        run: 'exit 1'
+        ## Call itself again
+        - uses: benc-uk/workflow-dispatch@v1
+        ## If actualWorkStep failed and maxAttempts hasn't 
+        ## been reached
+        if: |
+          steps.actualWorkStep.outcome != 'success' &&
+          steps.getNextAttemptNumber.outputs.result
+        with:
+        ## Pass the name of this workflow
+          workflow: ${{ github.learn-github-actions }}
+          token: ${{ secrets.PERSONAL_TOKEN }}
+        ## Pass increased attemptNumber and current maxAttempts
+        inputs: |
+          { 
+            "attemptNumber":
+                "${{steps.getNextAttemptNumber.outputs.result}}",
+            "maxAttempts": 
+                "${{github.event.inputs.maxAttempts}}"
+          }
