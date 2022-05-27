@@ -29,5 +29,5 @@ jobs:
     steps:
       - uses: benc-uk/workflow-dispatch@v1
         with:
-          workflow: .github/workflows/delayed-dispatched-workflow
+          workflow: .github/workflows/delayed-dispatched-workflow.yml
           token: ${{ env.GITHUB_TOKEN }}
