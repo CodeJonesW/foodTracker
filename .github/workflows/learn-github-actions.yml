@@ -28,4 +28,5 @@ jobs:
       - uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: delayed-dispatched-workflow
+          repo: codejonesw/foodTracker
           token: ${{ secrets.PAT }}
