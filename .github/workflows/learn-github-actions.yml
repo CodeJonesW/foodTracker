@@ -24,8 +24,10 @@ jobs:
             npm test
   postWorkflow:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: benc-uk/workflow-dispatch@v1
         with:
-        workflow: delayed-dispatched-workflow
-        token: ${{ secrets.PERSONAL_TOKEN }}
+          workflow: .github/workflows/delayed-dispatched-workflow
+          token: ${{ env.GITHUB_TOKEN }}
