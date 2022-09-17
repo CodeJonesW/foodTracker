@@ -1,6 +1,6 @@
 import React from 'react';
-import WhatDidYouEat from 'screens/WhatDidYouEat';
-import Profile from 'screens/Profile';
+import WhatDidYouEat from './screens/WhatDidYouEat';
+import Profile from './screens/Profile';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -11,7 +11,6 @@ import {RootStackParamList} from './Types/routeTypes';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
-// note for commit change
 
 const App = () => {
   return (

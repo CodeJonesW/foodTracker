@@ -44,6 +44,7 @@ const FoodInputBar: React.FC<{
           testID="foodNameInput"
           onChangeText={text => setFoodInput(text)}
           value={foodInput}
+          onSubmitEditing={submit}
         />
         <TextInput
           style={styles.textInput}
@@ -53,6 +54,7 @@ const FoodInputBar: React.FC<{
           testID="calorieInput"
           onChangeText={text => setFoodCalories(text)}
           value={foodCalories}
+          onSubmitEditing={submit}
         />
       </View>
 

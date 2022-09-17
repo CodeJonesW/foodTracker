@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   View,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
 import FoodInputBar from '../components/FoodInputBar';
 import Food from '../components/Food';
@@ -14,8 +14,6 @@ import moment from 'moment';
 import {WhatDidYouEatData, Consumption} from '../types/componentTypes';
 
 const WhatDidYouEat = ({route, navigation}: HomeProps) => {
-  const [consumedFoods, setConsumptions] = useState<Consumption[]>([]);
-
   const [state, setState] = useState<WhatDidYouEatData>();
 
   const totalCalories = () => {
@@ -44,52 +42,60 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
   };
 
   const deleteConsumption = (nameToDelete: string) => {
-    let newFoodArray = consumedFoods.filter(food => food.name !== nameToDelete);
-    setState({...state, consumedFoods: newFoodArray});
+    if (!!state?.consumedFoods) {
+      let newFoodArray = state.consumedFoods.filter(
+        food => food.name !== nameToDelete,
+      );
+      setState({...state, consumedFoods: newFoodArray});
+    }
   };
 
   const saveDay = () => {
-    console.log('save day');
     if (!state?.consumedFoods) {
       return;
     }
-    // here is where we save day data to api or provider
-    // navigation.navigate('Profile');
     setState({...state, consumedFoods: []});
   };
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+  const FlatListHeader = () => {
+    return (
+      <View>
         <Text style={styles.header}>What did you eat?</Text>
         <Text style={styles.subHeader}>{moment().format('MMMM Do YYYY')}</Text>
         <View>
           <FoodInputBar addConsumption={addConsumption} />
         </View>
-
-        <View style={{display: 'flex', flexDirection: 'column'}}>
-          <View
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              margin: 20,
-            }}>
-            <Text>Name</Text>
-            <Text style={{marginLeft: 170}}>Calories</Text>
-          </View>
-          {state?.consumedFoods !== undefined
-            ? state?.consumedFoods.map((food: Consumption) => {
-                return (
-                  <Food
-                    key={food.name}
-                    consumption={{name: food.name, calories: food.calories}}
-                    deleteConsumption={deleteConsumption}
-                  />
-                );
-              })
-            : null}
+        <View
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            margin: 20,
+          }}>
+          <Text>Name</Text>
+          <Text style={{marginLeft: 170}}>Calories</Text>
         </View>
-      </ScrollView>
+      </View>
+    );
+  };
+
+  const renderItem = (consumption: any) => {
+    const {item} = consumption;
+    return (
+      <Food
+        key={item.name}
+        consumption={{name: item.name, calories: item.calories}}
+        deleteConsumption={() => deleteConsumption(item.name)}
+      />
+    );
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        ListHeaderComponent={FlatListHeader}
+        data={state?.consumedFoods}
+        renderItem={renderItem}
+      />
       <Text style={styles.totalCalorieCount}>
         Total Calories: {totalCalories()}
       </Text>
