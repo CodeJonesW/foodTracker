@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   FlatList,
+  NativeModules,
 } from 'react-native';
 import FoodInputBar from '../components/FoodInputBar';
 import Food from '../components/Food';
@@ -14,7 +15,13 @@ import moment from 'moment';
 import {WhatDidYouEatData, Consumption} from '../types/componentTypes';
 
 const WhatDidYouEat = ({route, navigation}: HomeProps) => {
+  const {CalendarModule} = NativeModules;
   const [state, setState] = useState<WhatDidYouEatData>();
+
+  const onPress = (food: string, calories: string) => {
+    console.log('food', food), 'calories', calories;
+    CalendarModule.createCalendarEvent('testName', 'testLocation');
+  };
 
   const totalCalories = () => {
     let totalCalorieCount = 0;
@@ -63,7 +70,7 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
         <Text style={styles.header}>What did you eat?</Text>
         <Text style={styles.subHeader}>{moment().format('MMMM Do YYYY')}</Text>
         <View>
-          <FoodInputBar addConsumption={addConsumption} />
+          <FoodInputBar addConsumption={onPress} />
         </View>
         <View
           style={{
