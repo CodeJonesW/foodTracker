@@ -18,11 +18,6 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
   const {CalendarModule} = NativeModules;
   const [state, setState] = useState<WhatDidYouEatData>();
 
-  const onPress = (food: string, calories: string) => {
-    console.log('food', food), 'calories', calories;
-    CalendarModule.createCalendarEvent('testName', 'testLocation');
-  };
-
   const totalCalories = () => {
     let totalCalorieCount = 0;
     if (state?.consumedFoods !== undefined) {
@@ -33,6 +28,7 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
     return totalCalorieCount;
   };
   const addConsumption = (foodInput: string, foodCalories: string) => {
+    CalendarModule.createCalendarEvent(foodInput, foodCalories);
     let consumption = {
       name: foodInput,
       calories: parseInt(foodCalories),
@@ -70,7 +66,7 @@ const WhatDidYouEat = ({route, navigation}: HomeProps) => {
         <Text style={styles.header}>What did you eat?</Text>
         <Text style={styles.subHeader}>{moment().format('MMMM Do YYYY')}</Text>
         <View>
-          <FoodInputBar addConsumption={onPress} />
+          <FoodInputBar addConsumption={addConsumption} />
         </View>
         <View
           style={{
