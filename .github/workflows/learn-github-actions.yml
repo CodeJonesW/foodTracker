@@ -27,7 +27,11 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: benc-uk/workflow-dispatch@v1
+      - name: Sleep
+        uses: jakejarvis/wait-action@master
         with:
-          workflow: .github/workflows/delayed-dispatched-workflow.yml
-          token: ${{ env.GITHUB_TOKEN }}
+          time: '60s'
+      # - uses: benc-uk/workflow-dispatch@v1
+      #   with:
+      #     workflow: .github/workflows/delayed-dispatched-workflow.yml
+      #     token: ${{ env.GITHUB_TOKEN }}
